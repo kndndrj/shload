@@ -1,5 +1,8 @@
 # Shload - Shell Loading Bar
 I created this simple loading bar because I found it useful to have a kind of progress tracking in some scripts.
+```
+Progress: [============================                    ] 56%
+```
 
 ## Usage
 This bar consists of 2 simple shell functions; `progress_bar_setup()` and `progress_bar_update()`.
@@ -24,3 +27,4 @@ If you run the script `progress_bar.sh` by itself, you should see the progress b
 ```sh
 ./progress_bar.sh
 ```
+Take a look inside `progress_bar.sh` to take a deeper look at an example.

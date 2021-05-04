@@ -5,26 +5,26 @@ Progress: [============================                    ] 56%
 ```
 
 ## Usage
-This bar consists of 2 simple shell functions; `progress_bar_setup()` and `progress_bar_update()`.
+This bar consists of 2 simple shell functions; `shload_setup()` and `shload_update()`.
 
-To use the bar, copy these functions from `progress_bar.sh` to your script and use them like so:
+To use the bar, copy these functions from `shload.sh` to your script and use them like so:
 1. Initiate the bar with the maximum number and a loading symbol (string):
 ```sh
-progress_bar_setup <maximum> <loading_symbol>
+shload_setup <maximum> <loading_symbol>
 ```
 2. Call the update function for every iteration following up to the maximum number:
 ```sh
 while read file; do
     #...some work...
 
-    progress_bar_update
+    shload_update
 done
 ```
 It's best to keep the forementioned functions as close as possible, so you don't print something over the bar.
 
 ## Example
-If you run the script `progress_bar.sh` by itself, you should see the progress bar in action:
+If you run the script `shload.sh` by itself, you should see the progress bar in action:
 ```sh
-./progress_bar.sh
+./shload.sh
 ```
-Take a look inside `progress_bar.sh` to take a deeper look at an example.
+Peek inside `shload.sh` to take a deeper look at the example.

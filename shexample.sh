@@ -8,8 +8,6 @@
 ############################################################
 
 . $(dirname $0)/shload.sh
-echo $0
-echo $(dirname $0)
 
 max_count=4
 for loading_symbol in "+" "=" "#" "-" "@" "%%"; do

@@ -7,7 +7,7 @@
 # script (so you wont look for dependencies all the time). #
 ############################################################
 
-. $(pwd)/shload.sh
+. ${0%/*}/shload.sh
 
 max_count=4
 for loading_symbol in "+" "=" "#" "-" "@" "%%"; do

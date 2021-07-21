@@ -28,6 +28,6 @@ It's best to keep the forementioned functions as close as possible, so you don't
 ## Example
 You can find an example in `shexample.sh`. If you run the script by itself, you should see the progress bar in action:
 ```sh
-./shexample.sh.sh
+./shexample.sh
 ```
 Peek inside the mentioned files to take a deeper look at the example. Also, try resizing the terminal window before running the script

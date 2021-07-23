@@ -28,6 +28,10 @@ shload_setup() {
     shload_count=$(($shload_count / 2))
   done
 
+  # Empty bar and completion variable
+  shload_bar=""
+  shload_completion_old=0
+
   # Print the skeleton and save cursor location
   printf "\033[1;032mProgress:\033[0m\033[s [\033[${shload_width}C] 0%%"
   # Add 1 to the width (less math later)
@@ -43,13 +47,16 @@ shload_update() {
   shload_count=$(($1 * 100))
   shload_completion=$(($shload_count / $shload_percent))
 
-  if [ $shload_completion -lt 101 ]; then
-    # Make the bar itself, by printing the number of characters needed
-    shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($shload_count / $shload_delimiter))))
-  else
-    shload_completion=100
-    shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($((shload_percent * 100)) / shload_delimiter))))
+  if [ $shload_completion -ne $shload_completion_old ]; then
+    if [ $shload_completion -lt 101 ]; then
+      # Make the bar itself, by printing the number of characters needed
+      shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($shload_count / $shload_delimiter))))
+    else
+      shload_completion=100
+      shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($((shload_percent * 100)) / shload_delimiter))))
+    fi
   fi
+  shload_completion_old=$shload_completion
 
   # Print progress bar and percentage
   printf "\033[u [$shload_bar\033[u \033[${shload_width}C] $shload_completion%%"

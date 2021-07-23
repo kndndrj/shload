@@ -3,7 +3,7 @@
 ############################################################
 # Setup the progress bar                                   #
 # Usage:                                                   #
-#     shload_setup <maximum> <loading_symbol>              #
+#     shload_setup <maximum_value> <loading_symbol>        #
 ############################################################
 shload_setup() {
   # Progress bar variables
@@ -28,9 +28,6 @@ shload_setup() {
     shload_count=$(($shload_count / 2))
   done
 
-  # Initiate counter and progress bar
-  shload_bar=""
-  shload_count=0
   # Print the skeleton and save cursor location
   printf "\033[1;032mProgress:\033[0m\033[s [\033[${shload_width}C] 0%%"
   # Add 1 to the width (less math later)
@@ -40,14 +37,20 @@ shload_setup() {
 ############################################################
 # Update the progress bar                                  #
 # Usage:                                                   #
-#     shload_update                                        #
+#     shload_update <current_value>                        #
 ############################################################
 shload_update() {
-  shload_count=$(($shload_count + 100))
+  shload_count=$(($1 * 100))
+  shload_completion=$(($shload_count / $shload_percent))
 
-  # add a symbol at every delimiter
-  [ $(($shload_count % $shload_delimiter)) -lt 100 ] && shload_bar="$shload_bar$shload_symbol"
+  if [ $shload_completion -lt 101 ]; then
+    # Make the bar itself, by printing the number of characters needed
+    shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($shload_count / $shload_delimiter))))
+  else
+    shload_completion=100
+    shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($((shload_percent * 100)) / shload_delimiter))))
+  fi
 
   # Print progress bar and percentage
-  printf "\033[u [$shload_bar\033[u \033[${shload_width}C] $(($shload_count / $shload_percent))%%"
+  printf "\033[u [$shload_bar\033[u \033[${shload_width}C] $shload_completion%%"
 }

@@ -13,14 +13,14 @@ This bar consists of 2 simple shell functions; `shload_setup()` and `shload_upda
 To use **shload**, copy these functions from `shload.sh` to your script and use them like so:
 1. Initiate the bar with the maximum number and a loading symbol (string):
 ```sh
-shload_setup <maximum> <loading_symbol>
+shload_setup <maximum_value> <loading_symbol>
 ```
 2. Call the update function for every iteration following up to the maximum number:
 ```sh
 while read file; do
     #...some work...
 
-    shload_update
+    shload_update <current_value>
 done
 ```
 It's best to keep the forementioned functions as close as possible, so you don't print something over the bar.

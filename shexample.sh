@@ -10,7 +10,7 @@
 . $(dirname $0)/shload.sh
 
 max_count=4
-for loading_symbol in "+" "=" "#" "-" "@" "%%"; do
+for loading_symbol in "+" "=" "#" "-" "@" "%%%%"; do
   printf "\nBar with $max_count items:\n"
 
   # Setup the progress bar with number of lines and a symbol
@@ -20,7 +20,7 @@ for loading_symbol in "+" "=" "#" "-" "@" "%%"; do
   while [ $count -lt $max_count ]; do
     sleep .01
     count=$(($count + 1))
-    shload_update
+    shload_update $count
   done
   max_count=$((max_count * 4))
 

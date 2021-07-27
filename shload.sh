@@ -55,8 +55,8 @@ shload_update() {
       shload_completion=100
       shload_bar=$(printf "%0.s${shload_symbol}" $(seq -s " " 1 $(($((shload_percent * 100)) / shload_delimiter))))
     fi
+    shload_completion_old=$shload_completion
   fi
-  shload_completion_old=$shload_completion
 
   # Print progress bar and percentage
   printf "\033[u [$shload_bar\033[u \033[${shload_width}C] $shload_completion%%"

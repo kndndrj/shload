@@ -24,8 +24,8 @@ function test_medium_screen() {
 
 
 function test_big_screen() {
-  mock tput echo 50
+  mock tput echo 40
 
-  assert_equals "Progress:[s [[24C] 0%"\
+  assert_equals "Progress:[s [[12C] 0%"\
     "$(shload_setup 10 '+')"
 }
